@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  msr14-mongo:
+    container_name: msr14-mongo
+    build: .
+    ports:
+      - "27017:27017"
