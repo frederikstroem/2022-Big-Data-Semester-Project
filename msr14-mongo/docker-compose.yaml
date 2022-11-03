@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 services:
   msr14-mongo:
@@ -6,3 +6,8 @@ services:
     build: .
     ports:
       - "27017:27017"
+    network_mode: host
+    command:
+    - "/bin/sh"
+    - "-c"
+    - "mongod --replSet=rs0"
