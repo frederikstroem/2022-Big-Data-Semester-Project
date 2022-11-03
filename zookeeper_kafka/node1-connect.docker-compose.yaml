@@ -1,0 +1,71 @@
+version: "3.9"
+services:
+  connect:
+    image: confluentinc/cp-kafka-connect-base:7.2.2
+    network_mode: host
+    ports:
+      - "35000:35000"
+      - "8083:8083"
+    container_name: connect-1
+    command:
+    - bash
+    - -c
+    - |
+      confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.8.0
+      /etc/confluent/docker/run
+    environment:
+      KAFKA_JMX_PORT: 35000
+      KAFKA_JMX_HOSTNAME: connect
+      CONNECT_BOOTSTRAP_SERVERS: "192.168.159.10:19092,192.168.159.20:29092,192.168.159.20:39092"
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: connect-cluster-group
+      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_ZOOKEEPER_CONNECT: "<IP1>:12181"
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+      CONNECT_CONNECTIONS_MAX_IDLE_MS: 180000
+      CONNECT_METADATA_MAX_AGE_MS: 180000
+      CONNECT_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+
+# unused    
+#  schema-registry:
+#    image: confluentinc/cp-schema-registry:7.2.2
+#    container_name: schema-registry
+#    network_mode: host
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+#      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "<IP1>:19092,<IP2>:29092,<IP3>:39092"
+#      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "<IP1>:12181"
+#      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+
+  redpanda:
+    image: vectorized/console:latest
+    container_name: redpanda
+    #network_mode: host
+    ports:
+      - 8000:8080
+    restart: on-failure
+    entrypoint: /bin/sh
+    command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["<IP1>:19092", "<IP2>:29092", "<IP3>:39092"]
+
+# unused
+#        connect:
+#          enabled: true
+#          clusters:
+#            - name: mongo
+#              url: http://<IP1>:8083

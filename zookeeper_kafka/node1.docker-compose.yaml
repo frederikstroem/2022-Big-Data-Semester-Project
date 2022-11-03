@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  zk-1:
+    image: confluentinc/cp-zookeeper:7.2.2
+    network_mode: host
+    container_name: zk-1
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 12181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_SERVERS: "<IP1>:12888:13888;<IP2>:22888:23888;<IP3>:32888:33888" 
+
+  kafka-1:
+    image: confluentinc/cp-kafka:7.2.2
+    network_mode: host
+    container_name: kafka-1
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: <IP1>:12181,<IP2>:22181,<IP3>:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://<IP1>:19092

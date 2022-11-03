@@ -1,0 +1,4 @@
+kafka-python
+google-cloud-bigquery
+google-auth
+pytz
