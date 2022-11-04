@@ -6,7 +6,7 @@ services:
     ports:
       - "35000:35000"
       - "8083:8083"
-    container_name: connect-1
+    container_name: connect
     command:
     - bash
     - -c
@@ -27,7 +27,7 @@ services:
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
       CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_ZOOKEEPER_CONNECT: "<IP1>:12181"
+      CONNECT_ZOOKEEPER_CONNECT: "10.123.252.251:12181"
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
       CONNECT_CONNECTIONS_MAX_IDLE_MS: 180000
       CONNECT_METADATA_MAX_AGE_MS: 180000
@@ -62,10 +62,8 @@ services:
       CONSOLE_CONFIG_FILE: |
         kafka:
           brokers: ["10.123.252.251:19092", "10.123.252.193:29092", "10.123.252.213:39092"]
-
-# unused
-#        connect:
-#          enabled: true
-#          clusters:
-#            - name: mongo
-#              url: http://10.123.252.251:8083
+          connect:
+            enabled: true
+            clusters:
+              - name: mongo
+                url: http://10.123.252.251:8083
