@@ -2,7 +2,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 from kafka import KafkaProducer
 
-producer = KafkaProducer(bootstrap_servers='192.168.159.10:29092')
+producer = KafkaProducer(bootstrap_servers='10.123.252.251:12181:29092')
 key_path = "/sa.json"
 credentials = service_account.Credentials.from_service_account_file(
     key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"]
