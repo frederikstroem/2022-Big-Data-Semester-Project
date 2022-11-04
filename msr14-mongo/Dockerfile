@@ -6,4 +6,5 @@ RUN wget \
   --progress=dot:mega \
   http://ghtorrent-downloads.ewi.tudelft.nl/datasets/msr14-mongo.tar.gz
 RUN tar -xvzf msr14-mongo.tar.gz
-RUN mongorestore -d msr14 msr14
+#RUN cd /dump
+#RUN mongorestore -d msr14 msr14
