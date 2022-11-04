@@ -9,8 +9,8 @@ services:
     volumes:
       - ./mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
     # network_mode: host
-    # command:
-    # - "/bin/bash"
-    # - "-c"
+    command:
+    - "/bin/bash"
+    - "-c"
+    - "mongod --replSet=rs0"
     # - "mongorestore -d msr14 dump/msr14"
-    # #- "mongod --replSet=rs0"
