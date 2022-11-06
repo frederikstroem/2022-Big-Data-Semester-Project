@@ -62,8 +62,8 @@ services:
       CONSOLE_CONFIG_FILE: |
         kafka:
           brokers: ["kafka-1:19092", "kafka-2:29092", "kafka-3:39092"]
-          connect:
-            enabled: true
-            clusters:
-              - name: groupfive
-                url: http://10.123.252.251:8083
+        connect:
+          enabled: true
+          clusters:
+            - name: groupfive
+              url: http://10.123.252.251:8083
