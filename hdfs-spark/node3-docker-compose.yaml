@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  datanode-3:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode-3
+    restart: always
+    network_mode: host
+    volumes:
+      - hadoop_datanode-3:/hadoop/dfs/data
+#    ports:
+#      - 9864:9864
+#      - 9866:9866
+#      - 50010:50010
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+
+  spark-worker-2:
+    image: bde2020/spark-worker:3.3.0-hadoop3.3
+    container_name: spark-worker-2
+    network_mode: host
+#    ports:
+#      - 28081:28081
+    environment:
+      - SPARK_MASTER=spark://spark-master:17077
+      - SPARK_WORKER_PORT=28081
+
+volumes:
+  hadoop_datanode-3:
