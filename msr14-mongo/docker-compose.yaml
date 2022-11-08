@@ -4,11 +4,11 @@ services:
   msr14-mongo:
     container_name: msr14-mongo
     build: .
-    ports:
-      - "27017:27017"
+    # ports:
+    #   - "27017:27017"
     volumes:
       - ./mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
-    # network_mode: host
+    network_mode: host
     command:
     - "/bin/bash"
     - "-c"
