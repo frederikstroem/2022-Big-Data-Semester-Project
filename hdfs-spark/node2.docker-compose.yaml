@@ -39,6 +39,7 @@ services:
 #      - 28081:28081
     environment:
       - SPARK_MASTER=spark://spark-master:17077
+      - SPARK_LOCAL_IP=10.123.252.193
       - SPARK_WORKER_PORT=28081
 
 volumes:
