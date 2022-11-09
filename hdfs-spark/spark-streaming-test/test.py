@@ -1,4 +1,4 @@
-rom pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, explode_outer, collect_set, from_json
 from pyspark.sql.types import StringType, MapType
 import locale
