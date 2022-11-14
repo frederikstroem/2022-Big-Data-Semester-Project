@@ -42,6 +42,12 @@ services:
       - SPARK_LOCAL_IP=10.123.252.193
       - SPARK_WORKER_PORT=28081
 
+  hdfs-kafka-consumer:
+    container_name: hdfs-kafka-consumer
+    build: ./hdfs-kafka-consumer
+    network_mode: host
+    restart: always
+
 volumes:
   hadoop_namenode:
   hadoop_datanode-2:
