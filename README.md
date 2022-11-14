@@ -4,7 +4,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/frederikstroem/2022-Big-Data-Semester-Project)
 ![GitHub contributors](https://img.shields.io/github/contributors/frederikstroem/2022-Big-Data-Semester-Project)
 
-This project investigates and implements a `big data pipeline` integraded with a 'speech interface' and is a mandatory part of the 1st semester of MSc in Software Engineering at ![SDU](https://www.sdu.dk/en/uddannelse/kandidat/softwareengineering). 
+This project investigates and implements a `big data pipeline` integraded with a `speech interface` and is a mandatory part of the 1st semester of MSc in Software Engineering at ![SDU](https://www.sdu.dk/en/uddannelse/kandidat/softwareengineering). 
 
 The data pipeline builds upon Apache Kafka, Spark, and Hadoop.
 
