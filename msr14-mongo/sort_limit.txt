@@ -1,0 +1,2 @@
+db.repos.aggregate([ { $sort: { "pushed_at": 1 } }, { $limit: 100000 }, { $out: "repos_limit100k" }])
+db.commits.aggregate([ { $sort: { "committer.date": 1 } }, { $limit: 100000 }, { $out: "rcommits_limit100k" }])
