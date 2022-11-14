@@ -1,29 +1,45 @@
 # 2022-Big-Data-Semester-Project
 
+<!--- These are examples. See https://shields.io for others or to customize this set of shields. You might want to include dependencies, project status and licence info here --->
+![GitHub repo size](https://img.shields.io/github/repo-size/frederikstroem/2022-Big-Data-Semester-Project)
+![GitHub contributors](https://img.shields.io/github/contributors/frederikstroem/2022-Big-Data-Semester-Project)
 
-# Setup
-There are two folders which contain a subset of the docker compose services for each node
-- kafka
-- hdfs-spark
+This project investigates and implements a `big data pipeline` integraded with a 'speech interface' and is a mandatory part of the 1st semester of MSc in Software Engineering at ![SDU](https://www.sdu.dk/en/uddannelse/kandidat/softwareengineering). 
 
-### Starting Kafka and Zookeeper services
-`cd kafka`
+The data pipeline builds upon Apache Kafka, Spark, and Hadoop.
 
-Start the docker compose services on each node. Remember to replace `X` with the node index
-`docker-compose -f nodeX.docker-compose.yaml up -d`
 
-`docker logs zk-X`
-Zookeeper is up and running if it prints `...INFO Committing global session..."`
-Kafka is up and running if `docker logs kafka-X | grep started` returns a string
+## Spinning up the data pipeline
+Spin up the Kafka and Zookeeper instances on each node (replace `X` with node index):
+```
+docker compose -f kafka/nodeX.docker-compose.yaml up -d
+```
+Spin up Kafka Connect and Redpanda webui on Node1:
+```
+docker compose -f kafka/node1-connect.docker-compose.yaml up -d
+```
+Lastly, spin up HDFS and Spark
+```
+docker compose -f hdfs-spark/nodeX.docker-compose.yaml up -d
+```
 
-Deploy connect to node1
-`docker-compose -f node1-connect.docker-compose.yaml up -d`
+## Troubleshooting
+Check if Kafka and Zookeeper are running on each node:
+```
+docker logs zk-X
+docker logs kafka-X | grep started
+```
+Zookeeper instances will be running the logs contain `INFO Committing global session`
 
-### Starting HDFS and Spark
-`cd hdfs-spark`
+Check if HDFS instances are up and running (namenode runs on Node2):
+```
+docker logs datanode-X
+docker logs namenode
+```
+The datanodes logs will contain `INFO datanode.DataNode: Got finalize command for block pool` if they spun up successfully.
 
-Start the docker compose services on each node. Remember to replace `X` with the node index
-`docker-compose -f nodeX.docker-compose.yaml up -d`
-
-Data nodes are running if the logs print the following ` INFO datanode.DataNode: Got finalize command for block pool...`
-The Spark master will show two registered workers
+Check if Spark is running through the master on Node1:
+```
+docker logs spark-master
+```
+Two entries corresponding to the the workers should be visible in the logs.
