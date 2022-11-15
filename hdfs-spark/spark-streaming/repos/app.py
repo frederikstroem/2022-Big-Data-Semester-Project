@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode_outer, from_json, struct, to_json
+from pyspark.sql.functions import explode_outer, from_json, lit, max, struct, to_json
 from pyspark.sql.types import MapType, StringType
 import schemas
 
@@ -29,20 +29,20 @@ def apply_schema(df, schema):
     df2 = df2.filter(df2.key == "payload").select(from_json(df2.value, schema).alias("payload")).select("payload.*")
     return df2
 
-def write_to_kafka_topic(df, topic):
+def write_to_kafka_topic(df, topic, mode):
     df.select(to_json(struct([df[x] for x in df.columns])).alias("value")).select("value") \
         .writeStream \
         .format("kafka") \
         .option("kafka.bootstrap.servers", "kafka-1:19092,kafka-2:29092,kafka-3:39092") \
         .option("topic", topic) \
-        .outputMode("complete") \
+        .outputMode(mode) \
         .start() \
 
 if __name__ == '__main__':
     APP_NAME = "repos-job"
     TOPIC = "msr14.repos_limit100k"
     HIST_TOPIC = TOPIC + ".historical"
-    LIVE_TOPIC = TOPIC + ".live"
+    ANSWER_TOPIC = "answers"
     SCHEMA = schemas.repos_schema
     DATE = "2013-07-30"
 
@@ -63,12 +63,17 @@ if __name__ == '__main__':
         df.fullDocument.updated_at.alias("updated_at")
     )
 
-    df_h = df.filter("pushed_at < date'{}'".format(DATE))
-    df_l = df.filter("pushed_at >= date'{}'".format(DATE))
+    df2 = df.withColumn("tmp", lit("A"))
+    df2 = df2.groupBy(df2.tmp).agg(
+            max(struct("watchers_count", "full_name")).alias("watchers"),
+            max(struct("forks_count", "full_name")).alias("forks"),
+            max(struct("open_issues_count", "full_name")).alias("open_issues"),
+            max(struct("size", "full_name")).alias("size")
+        ).drop("tmp")
 
-    # Write histocal and live dataframes to kafka topics
-    write_to_kafka_topic(df_h, HIST_TOPIC)
-    write_to_kafka_topic(df_l, LIVE_TOPIC)
+    write_to_kafka_topic(df, HIST_TOPIC, "append")
+    write_to_kafka_topic(df2, ANSWER_TOPIC, "complete")
+
 
     spark.streams.awaitAnyTermination()
     spark.stop()

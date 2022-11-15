@@ -1,4 +1,4 @@
-from pyspark.sql.types import ArrayType, BooleanType, DateType, IntegerType, MapType, StringType, StructField, StructType
+from pyspark.sql.types import BooleanType, IntegerType, StringType, StructField, StructType, TimestampType
 
 commits_schema = StructType([
     StructField("_id", StructType([
@@ -173,9 +173,9 @@ repos_schema = StructType([
         StructField("milestones_url", StringType(), True),
         StructField("notifications_url", StringType(), True),
         StructField("labels_url", StringType(), True),
-        StructField("created_at", DateType(), True),
-        StructField("updated_at", DateType(), True),
-        StructField("pushed_at", DateType(), True),
+        StructField("created_at", TimestampType(), True),
+        StructField("updated_at", TimestampType(), True),
+        StructField("pushed_at", TimestampType(), True),
         StructField("git_url", StringType(), True),
         StructField("ssh_url", StringType(), True),
         StructField("clone_url", StringType(), True),
@@ -262,9 +262,9 @@ repos_schema = StructType([
             StructField("milestones_url", StringType(), True),
             StructField("notifications_url", StringType(), True),
             StructField("labels_url", StringType(), True),
-            StructField("created_at", DateType(), True),
-            StructField("updated_at", DateType(), True),
-            StructField("pushed_at", DateType(), True),
+            StructField("created_at", TimestampType(), True),
+            StructField("updated_at", TimestampType(), True),
+            StructField("pushed_at", TimestampType(), True),
             StructField("git_url", StringType(), True),
             StructField("ssh_url", StringType(), True),
             StructField("clone_url", StringType(), True),
@@ -346,9 +346,9 @@ repos_schema = StructType([
             StructField("milestones_url", StringType(), True),
             StructField("notifications_url", StringType(), True),
             StructField("labels_url", StringType(), True),
-            StructField("created_at", DateType(), True),
-            StructField("updated_at", DateType(), True),
-            StructField("pushed_at", DateType(), True),
+            StructField("created_at", TimestampType(), True),
+            StructField("updated_at", TimestampType(), True),
+            StructField("pushed_at", TimestampType(), True),
             StructField("git_url", StringType(), True),
             StructField("ssh_url", StringType(), True),
             StructField("clone_url", StringType(), True),
