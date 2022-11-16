@@ -29,7 +29,7 @@ Check if Kafka and Zookeeper are running on each node:
 docker logs zk-X
 docker logs kafka-X | grep started
 ```
-Zookeeper instances will be running the logs contain `INFO Committing global session`
+Zookeeper instances will be running if the logs contain `INFO Committing global session`
 
 Check if HDFS instances are up and running (namenode runs on Node2):
 ```
