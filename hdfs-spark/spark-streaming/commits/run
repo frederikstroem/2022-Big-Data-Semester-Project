@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker build -t pyspark-repos .
+docker run --rm -e ENABLE_INIT_DAEMON=false --net=host --name pyspark-repos pyspark-repos
