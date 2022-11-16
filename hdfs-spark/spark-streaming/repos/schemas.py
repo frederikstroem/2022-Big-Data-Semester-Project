@@ -1,4 +1,4 @@
-from pyspark.sql.types import BooleanType, IntegerType, StringType, StructField, StructType, TimestampType
+from pyspark.sql.types import ArrayType, BooleanType, IntegerType, StringType, StructField, StructType, TimestampType
 
 commits_schema = StructType([
     StructField("_id", StructType([
@@ -22,12 +22,12 @@ commits_schema = StructType([
             StructField("author", StructType([
                 StructField("name", StringType(), True),
                 StructField("email", StringType(), True),
-                StructField("date", StringType(), True)
+                StructField("date", TimestampType(), True)
             ])),
             StructField("committer", StructType([
                 StructField("name", StringType(), True),
                 StructField("email", StringType(), True),
-                StructField("date", StringType(), True)
+                StructField("date", TimestampType(), True)
             ])),
             StructField("message", StringType(), True),
             StructField("tree", StructType([
@@ -76,28 +76,32 @@ commits_schema = StructType([
             StructField("received_events_url", StringType(), True),
             StructField("type", StringType(), True)
         ])),
-        StructField("parents", StructType([
-            StructField("sha", StringType(), True),
-            StructField("url", StringType(), True),
-            StructField("html_url", StringType(), True)
-        ])),
+        StructField("parents", ArrayType(
+            StructType([
+                StructField("sha", StringType(), True),
+                StructField("url", StringType(), True),
+                StructField("html_url", StringType(), True)
+            ])
+        )),
         StructField("stats", StructType([
             StructField("total", IntegerType(), True),
             StructField("additions", IntegerType(), True),
             StructField("deletions", IntegerType(), True)
         ])),
-        StructField("files", StructType([
-            StructField("sha", StringType(), True),
-            StructField("filename", StringType(), True),
-            StructField("status", StringType(), True),
-            StructField("additions", IntegerType(), True),
-            StructField("deletions", IntegerType(), True),
-            StructField("changes", IntegerType(), True),
-            StructField("blob_url", StringType(), True),
-            StructField("raw_url", StringType(), True),
-            StructField("content_url", StringType(), True),
-            StructField("patch", StringType(), True)
-        ]))
+        StructField("files", ArrayType(
+            StructType([
+                StructField("sha", StringType(), True),
+                StructField("filename", StringType(), True),
+                StructField("status", StringType(), True),
+                StructField("additions", IntegerType(), True),
+                StructField("deletions", IntegerType(), True),
+                StructField("changes", IntegerType(), True),
+                StructField("blob_url", StringType(), True),
+                StructField("raw_url", StringType(), True),
+                StructField("content_url", StringType(), True),
+                StructField("patch", StringType(), True)
+            ])
+        ))
     ]))
 ])
 
