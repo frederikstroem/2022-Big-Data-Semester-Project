@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode_outer, from_json, lit, max, struct, to_json
+from pyspark.sql.functions import explode_outer, from_json, lit, max, struct, to_json, udf
 from pyspark.sql.types import MapType, StringType
+from datetime import date
 import schemas
 
 def create_spark_session(app_name):
@@ -38,13 +39,20 @@ def write_to_kafka_topic(df, topic, mode):
         .outputMode(mode) \
         .start() \
 
+@udf
+def get_date_category_udf(value):
+    if value is not None:
+        latest = date.fromisoformat("2013-08-10") # Latest date in data set
+        if latest == value.date():
+           return "latest"
+    return "all time"
+
 if __name__ == '__main__':
     APP_NAME = "repos-job"
     TOPIC = "msr14.repos_limit100k"
     HIST_TOPIC = TOPIC + ".historical"
     ANSWER_TOPIC = "answers"
     SCHEMA = schemas.repos_schema
-    DATE = "2013-07-30"
 
     spark = create_spark_session(APP_NAME)
     df = subscribe_to_kafka_topic(spark, TOPIC)
@@ -63,17 +71,17 @@ if __name__ == '__main__':
         df.fullDocument.updated_at.alias("updated_at")
     )
 
-    df2 = df.withColumn("tmp", lit("A"))
-    df2 = df2.groupBy(df2.tmp).agg(
-            max(struct("watchers_count", "full_name")).alias("watchers"),
-            max(struct("forks_count", "full_name")).alias("forks"),
-            max(struct("open_issues_count", "full_name")).alias("open_issues"),
-            max(struct("size", "full_name")).alias("size")
-        ).drop("tmp")
+    df2 = df.withColumn("tmp", lit("A")) \
+            .withColumn("category", get_date_category_udf(df.pushed_at))
+    df2 = df2.groupBy(df2.tmp, df2.category).agg(
+            max(struct("watchers_count", "full_name", "category")).alias("watchers"),
+            max(struct("forks_count", "full_name", "category")).alias("forks"),
+            max(struct("open_issues_count", "full_name", "category")).alias("open_issues"),
+            max(struct("size", "full_name", "category")).alias("size")
+        ).drop("tmp", "category")
 
     write_to_kafka_topic(df, HIST_TOPIC, "append")
     write_to_kafka_topic(df2, ANSWER_TOPIC, "complete")
-
 
     spark.streams.awaitAnyTermination()
     spark.stop()
