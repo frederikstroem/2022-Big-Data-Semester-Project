@@ -1,10 +1,9 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode_outer, from_json, lit, max, struct, to_json, udf
+from pyspark.sql import SparkSession, Window
+from pyspark.sql.functions import col, collect_list, desc, explode_outer, from_json, lit, max, rank, row_number, struct, to_json, udf
 from pyspark.sql.types import MapType, StringType
 from datetime import date
 import schemas
 
-# Workaround of passing a function as parameter.
 global ANSWER_TOPIC
 
 def create_spark_session(app_name):
@@ -48,13 +47,8 @@ def batch_write_to_kafka_topic(df, foreach_batch_function):
         .foreachBatch(foreach_batch_function) \
         .start()
 
-def count_language(df, epoch_id):
-    df2 = df.groupBy(df.tmp, df.category, df.language) \
-            .count() \
-            .groupBy(df.category) \
-            .agg(max(struct("count", "language", "category")).alias("language_count")) \
-            .drop("category")
-    df2.select(to_json(struct([df2[x] for x in df2.columns])).alias("value")).select("value") \
+def write_micro_batch_to_kafka_topic(df):
+    df.select(to_json(struct([df[x] for x in df.columns])).alias("value")).select("value") \
         .write \
         .format("kafka") \
         .option("kafka.bootstrap.servers", "kafka-1:19092,kafka-2:29092,kafka-3:39092") \
@@ -62,6 +56,52 @@ def count_language(df, epoch_id):
         .mode("append") \
         .save()
 
+def count_language(df, epoch_id):
+    df2 = df.groupBy(df.category, df.language) \
+            .count()
+    w = Window.partitionBy("category").orderBy(desc("count"))
+    df2 = df2.withColumn("placement", row_number().over(w))
+    df2 = df2.filter( \
+        ((df2.placement <= 3) & (df2.category == "all time")) | \
+            ((df2.placement == 1) & (df2.category == "latest")))
+    df2 = df2.groupBy(df2.category) \
+            .agg(collect_list(struct("placement", "language", "count")).alias("placements")) \
+            .withColumn("type", lit("languages_count"))  
+    write_micro_batch_to_kafka_topic(df2)
+
+def top3_counts(df, epoch_id):
+    # Watchers count
+    df2 = partition_df(df, "watchers_count")
+    write_micro_batch_to_kafka_topic(df2)
+
+    # Forks count
+    df2 = partition_df(df, "forks_count")
+    write_micro_batch_to_kafka_topic(df2)
+
+    # Open issues
+    df2 = partition_df(df, "open_issues_count")
+    write_micro_batch_to_kafka_topic(df2)
+
+    # Size
+    df2 = partition_df(df, "size")
+    write_micro_batch_to_kafka_topic(df2)
+
+def partition_df(df, field):
+    w = Window.partitionBy("category").orderBy(desc(field))
+    df2 = df.withColumn("placement", rank().over(w))
+    df2 = df2.filter( \
+        ((df2.placement <= 3) & (df2.category == "all time")) | \
+            ((df2.placement == 1) & (df2.category == "latest")))   
+    df2 = df2.select(
+        df2.category, 
+        df2.placement, 
+        df2.full_name, 
+        col(field).alias("count")
+    ) \
+        .withColumn("type", lit(field))
+    df2 = df2.groupBy(df2.category, df2.type) \
+             .agg(collect_list(struct("placement", "full_name", "count")).alias("placements"))      
+    return df2
 
 @udf
 def get_date_category_udf(value):
@@ -96,19 +136,9 @@ if __name__ == '__main__':
         df.fullDocument.language.alias("language")
     )
 
-    df2 = df.withColumn("tmp", lit("A")) \
-            .withColumn("category", get_date_category_udf(df.pushed_at))
-    df3 = df2.groupBy(df2.tmp, df2.category).agg(
-            max(struct("watchers_count", "full_name", "category")).alias("watchers"),
-            max(struct("forks_count", "full_name", "category")).alias("forks"),
-            max(struct("open_issues_count", "full_name", "category")).alias("open_issues"),
-            max(struct("size", "full_name", "category")).alias("size")
-        ).drop("tmp", "category")
+    df2 = df.withColumn("category", get_date_category_udf(df.pushed_at))
 
-    write_to_kafka_topic(df, HIST_TOPIC, "append")
-    write_to_kafka_topic(df3, ANSWER_TOPIC, "complete")
-
-    # Using foreach_bach to execute multiple aggregations on dataframe.
+    batch_write_to_kafka_topic(df2, top3_counts)
     batch_write_to_kafka_topic(df2, count_language)
 
     spark.streams.awaitAnyTermination()
