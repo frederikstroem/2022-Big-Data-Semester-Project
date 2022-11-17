@@ -138,6 +138,7 @@ if __name__ == '__main__':
 
     df2 = df.withColumn("category", get_date_category_udf(df.pushed_at))
 
+    write_to_kafka_topic(df, HIST_TOPIC, "append")
     batch_write_to_kafka_topic(df2, top3_counts)
     batch_write_to_kafka_topic(df2, count_language)
 
