@@ -83,11 +83,11 @@ def partition_df(df, field):
         df2.category, 
         df2.placement, 
         df2.full_name, 
-        col(field2).alias("sum")
+        col(field2).alias("count")
     ) \
         .withColumn("type", lit(field))
     df2 = df2.groupBy(df2.category, df2.type) \
-             .agg(collect_list(struct("placement", "full_name", "sum")).alias("placements"))      
+             .agg(collect_list(struct("placement", "full_name", "count")).alias("placements"))      
     return df2
 
 @udf
