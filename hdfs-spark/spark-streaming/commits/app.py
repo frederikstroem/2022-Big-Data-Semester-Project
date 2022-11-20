@@ -72,7 +72,7 @@ def sum_stats(df, epoch_id):
 
 def partition_df(df, field):
     field2 = "sum({})".format(field)
-    df2 = df.groupBy(df.category, df.repo) \
+    df2 = df.groupBy(df.category, df.full_name) \
             .sum()
     w = Window.partitionBy("category").orderBy(desc(field2))
     df2 = df2.withColumn("placement", rank().over(w))
@@ -82,12 +82,12 @@ def partition_df(df, field):
     df2 = df2.select(
         df2.category, 
         df2.placement, 
-        df2.repo, 
+        df2.full_name, 
         col(field2).alias("sum")
     ) \
         .withColumn("type", lit(field))
     df2 = df2.groupBy(df2.category, df2.type) \
-             .agg(collect_list(struct("placement", "repo", "sum")).alias("placements"))      
+             .agg(collect_list(struct("placement", "full_name", "sum")).alias("placements"))      
     return df2
 
 @udf
@@ -123,8 +123,8 @@ if __name__ == '__main__':
         df.fullDocument.stats.total.alias("total"),
         df.fullDocument.stats.additions.alias("additions"),
         df.fullDocument.stats.deletions.alias("deletions")
-    ) \
-        .withColumn("repo", get_repo_udf(df.html_url))
+    )
+    df = df.withColumn("full_name", get_repo_udf(df.html_url))
 
     df2 = df.withColumn("category", get_date_category_udf(df.commit_date))
     write_to_kafka_topic(df, HIST_TOPIC, "append")

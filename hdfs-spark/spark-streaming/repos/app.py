@@ -64,9 +64,9 @@ def count_language(df, epoch_id):
     df2 = df2.filter( \
         ((df2.placement <= 3) & (df2.category == "all time")) | \
             ((df2.placement == 1) & (df2.category == "latest")))
-    df2 = df2.groupBy(df2.category) \
-            .agg(collect_list(struct("placement", "language", "count")).alias("placements")) \
-            .withColumn("type", lit("languages_count"))  
+    df2 = df2.withColumn("type", lit("language_count"))  
+    df2 = df2.groupBy(df2.category, df2.type) \
+             .agg(collect_list(struct("placement", "language", "count")).alias("placements"))
     write_micro_batch_to_kafka_topic(df2)
 
 def top3_counts(df, epoch_id):
