@@ -1,0 +1,18 @@
+{
+    "collection": "answer_col",
+    "connection.uri": "mongodb://mongo-sink:27017",
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "database": "answer_db",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false",
+    "key.ignore": "true",
+    "max.num.retries": "3",
+    "name": "mongo-sink",
+    "retries.defer.timeout": "5000",
+    "schemas.enable": "false",
+    "tasks.max": "1",
+    "topics": "answers",
+    "type.name": "kafka-connect",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter.schemas.enable": "false"
+}
