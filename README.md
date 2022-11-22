@@ -18,9 +18,15 @@ Spin up Kafka Connect and Redpanda webui on Node1:
 ```
 docker compose -f kafka/node1-connect.docker-compose.yaml up -d
 ```
-Lastly, spin up HDFS and Spark
+Spin up HDFS and Spark
 ```
 docker compose -f hdfs-spark/nodeX.docker-compose.yaml up -d
+```
+
+Lastly, spin up the MongoDB sink on Node3:
+```
+cd mongo-sink
+docker compose up -d
 ```
 
 ## Troubleshooting
