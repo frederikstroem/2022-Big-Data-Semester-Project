@@ -1,0 +1,7 @@
+stt
+pyaudio
+webrtcvad
+halo
+numpy
+scipy
+pyautogui
