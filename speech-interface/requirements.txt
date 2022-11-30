@@ -5,3 +5,4 @@ halo
 numpy
 scipy
 pyautogui
+pymongo
