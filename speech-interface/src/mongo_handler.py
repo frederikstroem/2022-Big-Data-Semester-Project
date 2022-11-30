@@ -6,7 +6,7 @@ import time
 
 class GetQueries(Enum):
     ALL_TIME_WATCHERS_COUNT = {
-        "category": "all_time",
+        "category": "all time",
         "type": "watchers_count"
     }
     LATEST_LANGUAGE_COUNT = {
