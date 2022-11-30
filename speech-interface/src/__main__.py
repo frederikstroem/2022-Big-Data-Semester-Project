@@ -1,7 +1,5 @@
-from mongo_handler import MongoHandler, GetQueries
-
 def main():
-    mongo_handler = MongoHandler()
+    pass
 
 if __name__ == "__main__":
     main()
