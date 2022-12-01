@@ -12,7 +12,7 @@ class Classifier(object):
             ),
             (
                 '^(?!.*today).*issues.*$',
-                'What repository has the largest number of open issues?'
+                'What repository has the largest number of open issues?',
                 'The repository "{full_name}" has the largest number of open issues, with a total of {count}.'.format_map(self.mongo_handler.get_query(GetQueries.ALL_TIME_OPEN_ISSUES_COUNT))
             ),
             (
