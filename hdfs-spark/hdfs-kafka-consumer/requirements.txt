@@ -1,2 +1,4 @@
 kafka-python
 hdfs[avro]
+pandas
+pyarrow
