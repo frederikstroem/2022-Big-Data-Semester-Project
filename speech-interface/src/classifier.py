@@ -1,3 +1,4 @@
+import re
 from mongo_handler import MongoHandler, GetQueries
 
 class Classifier(object):
@@ -61,3 +62,6 @@ class Classifier(object):
                 'The repository "{full_name}" has the most new deletions today, with a total of {count}.'.format_map(self.mongo_handler.get_query(GetQueries.LATEST_DELETIONS))
             )
         ]
+
+    def classify(self, text):
+        return next((lookup for lookup in self.lookups if re.match(lookup[0], text)), None)
