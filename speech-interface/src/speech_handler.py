@@ -204,12 +204,17 @@ class SpeechHandler(object):
                 logging.debug("streaming frame")
                 stream_context.feedAudioContent(np.frombuffer(frame, np.int16))
             else:
+                start_time_speech_acknowledgement = time.time()
                 spinner.stop()
                 logging.debug("end utterence")
                 text = stream_context.finishStream()
+                time_speech_acknowledgement = round((time.time() - start_time_speech_acknowledgement) * 1000, 2)
                 print("----")
                 print("Recognized: %s" % text)
                 # START: Classifier prints
+                start_time_classify = time.time()
                 print(self.classifier.classify(text))
+                time_classify = round((time.time() - start_time_classify) * 1000, 2)
+                print(f'\nSpeech acknowledgement took {time_speech_acknowledgement} ms. Classification took {time_classify} ms.')
                 # END: Classifier prints
                 stream_context = model.createStream()

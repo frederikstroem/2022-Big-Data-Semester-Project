@@ -61,15 +61,10 @@ class MongoHandler(object):
         print("Done. Took {} milliseconds.".format(round((time.time() - start_time) * 1000, 2)))
 
     def get_query(self, query):
-        start_time = time.time()
-        print("Querying MongoDB...", end=" ")
-
         col = self.mongo_client["answer_db"]["answer_col"]
         result = list(col.find(
             {"category": query.value["category"], "type": query.value["type"]},
         ))
-
-        print("Done. Took {} milliseconds.".format(round((time.time() - start_time) * 1000, 2)))
 
         # We are only interested in two fields
         return {
