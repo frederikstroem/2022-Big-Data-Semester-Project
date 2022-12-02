@@ -47,7 +47,7 @@ class Classifier(object):
                 'The repository "{full_name}" is the most forked today, with a total of {count} forks.'.format_map(self.mongo_handler.get_query(GetQueries.LATEST_FORKS_COUNT))
             ),
             (
-                '^.*issues.*today|today.*issues.*$',
+                '^.*issues.*(today|to day)|(today|to day).*issues.*$',
                 'Which repository has the most new issues today?',
                 'The repository "{full_name}" has the most new issues today, with a total of {count}.'.format_map(self.mongo_handler.get_query(GetQueries.LATEST_OPEN_ISSUES_COUNT))
             ),
@@ -62,6 +62,15 @@ class Classifier(object):
                 'The repository "{full_name}" has the most new deletions today, with a total of {count}.'.format_map(self.mongo_handler.get_query(GetQueries.LATEST_DELETIONS))
             )
         ]
+        self.possible_quuestions_string = 'Possible questions are:\n* ' + '\n* '.join([lookup[1] for lookup in self.lookups])
 
     def classify(self, text):
-        return next((lookup for lookup in self.lookups if re.match(lookup[0], text)), None)
+        # TODO: Fix classifer, does not work as expected!
+        answer_tuple = next((lookup for lookup in self.lookups if re.match(lookup[0], text)), None)
+        if answer_tuple is not None:
+            return f'Interpreted "{text}" as "{answer_tuple[1]}"\nAnswer: {answer_tuple[2]}'
+        elif re.match('^.*help.*$', text):
+            return f'Interpreted "{text}. {self.possible_quuestions_string}'
+        else:
+            return f'Could not interpret "{text}" as a question.\nSay "help" for a list of possible questions to ask!'
+            #return f'Could not interpret "{text}" as a question.\n{self.possible_quuestions_string}'
