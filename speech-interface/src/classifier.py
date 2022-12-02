@@ -73,7 +73,7 @@ class Classifier(object):
 
         if answer_tuple is not None:
             return f'Interpreted "{text}" as "{answer_tuple[1]}"\nAnswer: {answer_tuple[2]}'
-        elif re.match('^.*help.*$', text):
+        elif re.match('^.*(help|hill|he|health).*$', text):
             return f'Interpreted "{text}. {self.possible_quuestions_string}'
         else:
             return f'Could not interpret "{text}" as a question.\nSay "help" for a list of possible questions to ask!'
