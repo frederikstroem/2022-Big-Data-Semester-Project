@@ -7,7 +7,7 @@ class Classifier(object):
         # https://stackoverflow.com/a/33344929
         self.lookups = [  # (regex, question, answer)
             (
-                '^.*watchers.*$',
+                '^.*(watchers|watches).*$',
                 'What repository has the most watchers?',
                 'The repository "{full_name}" has the most watchers, with a total of {count}.'.format_map(self.mongo_handler.get_query(GetQueries.ALL_TIME_WATCHERS_COUNT))
             ),
@@ -65,8 +65,12 @@ class Classifier(object):
         self.possible_quuestions_string = 'Possible questions are:\n* ' + '\n* '.join([lookup[1] for lookup in self.lookups])
 
     def classify(self, text):
-        # TODO: Fix classifer, does not work as expected!
-        answer_tuple = next((lookup for lookup in self.lookups if re.match(lookup[0], text)), None)
+        answer_tuple = None
+        for lookup in self.lookups:
+            if re.match(lookup[0], text):
+                answer_tuple = lookup
+                break
+
         if answer_tuple is not None:
             return f'Interpreted "{text}" as "{answer_tuple[1]}"\nAnswer: {answer_tuple[2]}'
         elif re.match('^.*help.*$', text):
