@@ -1,0 +1,280 @@
+Script started on 2022-12-11 17:26:18+01:00 [TERM="tmux-256color" TTY="/dev/pts/3" COLUMNS="147" LINES="35"]
+[?2004h
+[1;36m2022-Big-Data-Semester-Project/speech-interface[0m on [1;35m [0m[1;35mmain[0m [1;31m[[0m[1;31m?[0m[1;31m][0m via [1;33m🐍 [0m[1;33m[0m[1;33mv3.10.8[0m[1;33m [0m
+[1;32m❯[0m [7mlsb_release -d[27m[C[Clsb_release -d
+[?2004lDescription:	Arch Linux
+[?2004h
+[1;36m2022-Big-Data-Semester-Project/speech-interface[0m on [1;35m [0m[1;35mmain[0m [1;31m[[0m[1;31m?[0m[1;31m][0m via [1;33m🐍 [0m[1;33m[0m[1;33mv3.10.8[0m[1;33m [0m
+[1;32m❯[0m [7mgrep -m 1 'model name' /proc/cpuinfo[27m[C[Cgrep -m 1 'model name' /proc/cpuinfo
+[?2004lmodel name	: Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz
+[?2004h
+[1;36m2022-Big-Data-Semester-Project/speech-interface[0m on [1;35m [0m[1;35mmain[0m [1;31m[[0m[1;31m?[0m[1;31m][0m via [1;33m🐍 [0m[1;33m[0m[1;33mv3.10.8[0m[1;33m [0m
+[1;32m❯[0m python src/
+[?2004lConnecting to MongoDB...[0m [0mDone. Took 1.49 milliseconds.[0m
+[0mInitializing model...[0m
+INFO:root:self.model: model.tflite
+[0mTensorFlow: v2.9.1-11-gf8242ebc005
+ Coqui STT: v1.4.0-0-gfcec06bd
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO:root:self.scorer: huge-vocabulary.scorer
+[0mALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.hdmi.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM hdmi
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.hdmi.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM hdmi
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.modem.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline:CARD=0,DEV=0
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.modem.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline:CARD=0,DEV=0
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.modem.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM phoneline
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.modem.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM phoneline
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib pcm_a52.c:482:(a52_slave_hw_params_half) Cannot set slave channels 2
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+[0mListening (ctrl-C to exit)...[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the most watches[0m
+[0mInterpreted "what repository has the most watches" as "What repository has the most watchers?"
+Answer: The repository "bartaz/impress.js" has the most watchers, with a total of 17513.[0m
+[0m
+Speech acknowledgement took 243.88 ms. Classification took 0.16 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the largest number of issues[0m
+[0mInterpreted "what repository has the largest number of issues" as "What repository has the largest number of open issues?"
+Answer: The repository "django-debug-toolbar/django-debug-toolbar" has the largest number of open issues, with a total of 129.[0m
+[0m
+Speech acknowledgement took 198.19 ms. Classification took 0.15 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the largest repository[0m
+[0mInterpreted "what is the largest repository" as "What is the largest repository?"
+Answer: The repository "uatevahr/xbmc" is the largest, with a size of 1259468 bytes.[0m
+[0m
+Speech acknowledgement took 141.16 ms. Classification took 0.13 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: which languished is most used[0m
+[0mInterpreted "which languished is most used. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 150.78 ms. Classification took 0.9 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: which language is most used[0m
+[0mInterpreted "which language is most used" as "Which language is most used?"
+Answer: The language "JavaScript" is the most used, with a total of 27782 occurrences.[0m
+[0m
+Speech acknowledgement took 151.37 ms. Classification took 0.03 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most expository[0m
+[0mInterpreted "what is the most expository. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 247.41 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most active repository[0m
+[0mInterpreted "what is the most active repository" as "What is the most active repository?"
+Answer: The repository "facebook/hiphop-php" is the most active, with a total of 6363933 commits.[0m
+[0m
+Speech acknowledgement took 247.17 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most false repository[0m
+[0mInterpreted "what is the most false repository. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 70.36 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most fault repository[0m
+[0mInterpreted "what is the most fault repository. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 119.85 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most forced repository[0m
+[0mInterpreted "what is the most forced repository" as "What is the most forked repository?"
+Answer: The repository "bartaz/impress.js" is the most forked, with a total of 3408 forks.[0m
+[0m
+Speech acknowledgement took 182.51 ms. Classification took 0.05 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what is the most popular language today[0m
+[0mInterpreted "what is the most popular language today" as "What is the most popular language today?"
+Answer: The language "Ruby" is the most popular today, with a total of 29 occurrences.[0m
+[0m
+Speech acknowledgement took 108.29 ms. Classification took 0.05 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: which respository is most for to day[0m
+[0mInterpreted "which respository is most for to day" as "Which repository is most forked today?"
+Answer: The repository "elithrar/octocamp" is the most forked today, with a total of 1 forks.[0m
+[0m
+Speech acknowledgement took 60.42 ms. Classification took 0.03 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: which repository has the most new issues today[0m
+[0mInterpreted "which repository has the most new issues today" as "Which repository has the most new issues today?"
+Answer: The repository "yyzeng/knitr" has the most new issues today, with a total of 0.[0m
+[0m
+Speech acknowledgement took 269.97 ms. Classification took 0.03 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository haste moses knew a dishnsta[0m
+[0mCould not interpret "what repository haste moses knew a dishnsta" as a question.
+Say "help" for a list of possible questions to ask![0m
+[0m
+Speech acknowledgement took 226.32 ms. Classification took 0.06 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the most new additions to day[0m
+[0mInterpreted "what repository has the most new additions to day" as "What repository has the most new additions today?"
+Answer: The repository "JamieMason/phantomjs" has the most new additions today, with a total of 2140.[0m
+[0m
+Speech acknowledgement took 184.01 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the most new delusions to day[0m
+[0mInterpreted "what repository has the most new delusions to day. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 194.02 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: [0m
+[0mCould not interpret "" as a question.
+Say "help" for a list of possible questions to ask![0m
+[0m
+Speech acknowledgement took 114.58 ms. Classification took 0.06 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repose[0m
+[0mCould not interpret "what repose" as a question.
+Say "help" for a list of possible questions to ask![0m
+[0m
+Speech acknowledgement took 143.33 ms. Classification took 0.03 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: but repository has the most new delusions to day[0m
+[0mInterpreted "but repository has the most new delusions to day. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 118.89 ms. Classification took 0.04 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the most new delusions to day[0m
+[0mInterpreted "what repository has the most new delusions to day. Possible questions are:
+* What repository has the most watchers?
+* What repository has the largest number of open issues?
+* What is the largest repository?
+* Which language is most used?
+* What is the most active repository?
+* What is the most forked repository?
+* What is the most popular language today?
+* Which repository is most forked today?
+* Which repository has the most new issues today?
+* What repository has the most new additions today?
+* What repository has the most new deletions today?[0m
+[0m
+Speech acknowledgement took 49.53 ms. Classification took 0.05 ms.[0m
+[0m[?25l[0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[1m[36m-[0m [0m[0m[K[0m[1m[36m\[0m [0m[0m[K[0m[1m[36m|[0m [0m[0m[K[0m[1m[36m/[0m [0m[0m[K[0m[?25h[0m----[0m
+[0mRecognized: what repository has the most new deletions tree[0m
+[0mInterpreted "what repository has the most new deletions tree" as "What repository has the most new deletions today?"
+Answer: The repository "xbmc/xbmc" has the most new deletions today, with a total of 737.[0m
+[0m
+Speech acknowledgement took 102.37 ms. Classification took 0.04 ms.[0m
+^CTraceback (most recent call last):
+[0m  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[0m    [0mreturn _run_code(code, main_globals, None,[0m
+[0m  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+[0m    [0mexec(code, run_globals)[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/__main__.py", line 8, in <module>
+[0m    [0mmain()[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/__main__.py", line 5, in main
+[0m    [0mspeech_handler.run()[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/speech_handler.py", line 201, in run
+[0m    [0mfor frame in frames:[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/speech_handler.py", line 137, in vad_collector
+[0m    [0mfor frame in frames:[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/speech_handler.py", line 121, in frame_generator
+[0m    [0myield self.read()[0m
+[0m  File "/home/katofln/projects/2022-Big-Data-Semester-Project/speech-interface/src/speech_handler.py", line 89, in read
+[0m    [0mreturn self.buffer_queue.get()[0m
+[0m  File "/usr/lib/python3.10/queue.py", line 171, in get
+[0m    [0mself.not_empty.wait()[0m
+[0m  File "/usr/lib/python3.10/threading.py", line 320, in wait
+[0m    [0mwaiter.acquire()[0m
+[0mKeyboardInterrupt[0m[0m
+[0m[0m[0m[K[0m[?25h[0m[0m
+[?2004h
+[1;36m2022-Big-Data-Semester-Project/speech-interface[0m on [1;35m [0m[1;35mmain[0m [1;31m[[0m[1;31m?[0m[1;31m][0m via [1;33m🐍 [0m[1;33m[0m[1;33mv3.10.8[0m[1;33m [0mtook [1;33m2m46s[0m 
+[1;31m❯[0m exit
+[?2004lexit
+
+Script done on 2022-12-11 17:29:37+01:00 [COMMAND_EXIT_CODE="130"]
