@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  spark-worker-3:
+    image: bde2020/spark-worker:3.3.0-hadoop3.3
+    container_name: spark-worker-3
+    network_mode: host
+    environment:
+      - SPARK_MASTER=spark://spark-master:17077
+      - SPARK_WORKER_PORT=28081
