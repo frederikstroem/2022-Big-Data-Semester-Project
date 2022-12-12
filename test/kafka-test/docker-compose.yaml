@@ -1,31 +1,16 @@
 version: "3.9"
 services:
-  zk-3:
-    image: confluentinc/cp-zookeeper:7.2.2
-    network_mode: host
-    container_name: zk-3
-    volumes:
-      - zk-3_data:/var/lib/zookeeper/data
-      - zk-3_log:/var/lib/zookeeper/log
-    environment:
-      ZOOKEEPER_SERVER_ID: 3
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOOKEEPER_INIT_LIMIT: 5
-      ZOOKEEPER_SYNC_LIMIT: 2
-      ZOOKEEPER_SERVERS: "zk-1:12888:13888;zk-2:22888:23888;zk-3:32888:33888"
-
-  kafka-3:
+  kafka-4:
     image: confluentinc/cp-kafka:7.2.2
     network_mode: host
-    container_name: kafka-3
+    container_name: kafka-4
     volumes:
-      - kafka-3_data:/var/lib/kafka/data
+      - kafka-4_data:/var/lib/kafka/data
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zk-1:12181,zk-2:22181,zk-3:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:39092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-4:49092
 
 volumes:
-  zk-3_data:
-  zk-3_log:
-  kafka-3_data:
+  zk-4_data:
+  zk-4_log:
+  kafka-4_data:
