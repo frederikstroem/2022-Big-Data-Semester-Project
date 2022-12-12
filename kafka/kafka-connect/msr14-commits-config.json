@@ -1,0 +1,8 @@
+{
+    "name": "msr14.commits_limit100k",
+    "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+    "connection.uri": "mongodb://localhost:27017",
+    "database": "msr14",
+    "collection": "commits_limit100k",
+    "copy.existing": true
+}

@@ -1,0 +1,16 @@
+{
+    "confluent.topic.bootstrap.servers": "kafka-1:19092",
+    "confluent.topic.replication.factor": "1",
+    "connector.class": "io.confluent.connect.hdfs3.Hdfs3SinkConnector",
+    "flush.size": "3",
+    "hdfs.url": "hdfs://namenode:9870",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.ignore": "true",
+    "name": "msr14.repos_limit100k.historical",
+    "store.url": "hdfs://namenode:9000/",
+    "tasks.max": "1",
+    "topics": "msr14.repos_limit100k.historical",
+    "type.name": "kafka-connect",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081"
+}
