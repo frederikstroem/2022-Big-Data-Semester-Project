@@ -1,0 +1,3 @@
+/bin/kafka-reassign-partitions --topics-to-move-json-file topics-to-move.json --broker-list "1001,1002,1003,1004" --generate --bootstrap-server localhost:19092
+
+/bin/kafka-reassign-partitions --reassignment-json-file move.json --execute --bootstrap-server localhost:19092

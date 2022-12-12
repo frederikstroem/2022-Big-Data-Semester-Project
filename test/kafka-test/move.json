@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "partitions": [
+        {
+            "topic": "msr14.repos_limit100k",
+            "partition": 0,
+            "replicas": [
+                1003
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "msr14.repos_limit100k",
+            "partition": 1,
+            "replicas": [
+                1002
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "msr14.repos_limit100k",
+            "partition": 2,
+            "replicas": [
+                1001
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        },
+        {
+            "topic": "msr14.repos_limit100k",
+            "partition": 3,
+            "replicas": [
+                1004
+            ],
+            "log_dirs": [
+                "any"
+            ]
+        }
+    ]
+}
